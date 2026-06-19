@@ -1,5 +1,3 @@
-
-%  STEP 1: SETUP AMBIENTE 3D - DRONE E SOCCORRITORI
 clc; clear; close all;
 
 %% 1. PARAMETRI DI CONFIGURAZIONE
@@ -19,7 +17,7 @@ socc_altezzaPersona = 1.8; % Altezza da terra (metri)
 nPuntiRaggio = 100;
 
 %% 2. IMPORTAZIONE MAPPA DEM E INTERPOLAZIONE
-disp('Caricamento mappa DEM in corso');
+disp('Caricamento mappa DEM');
 % Vengono restituite 3 matrici di coordinate
 [X_metri, Y_metri, Z_metri] = importaMappaSAR(nomeFileMappa);
 
@@ -158,19 +156,8 @@ lgd=creaLegendaSAR;
 % Personalizzazione del colore del testo del grafico
 personalizzaGraficaSAR(gca, lgd);
 
-% Da questa simulazione riconosciamo dei valori in Spazio libero pari a
-% circa -63/-65 dBm. Questi valori nascono dalla semplice applicazione
-% dell'equazione di Friis, e sono coerenti anche con il calcolo
-% approssimativo che si può fare con carta e penna considerando potenza 
-% trasmessa, guadagno e path loss (pari circa a -97 dB).
 
-% I valori invece in spazio ostruito nascono dall'applicazione del modello
-% knife edge in cui viene calcolata l'altezza dell'ostacolo roccioso, il
-% parametro di diffrazione di Fresnel-Kirchoff, e ciò si traduce in 
-% un'attenuazione addizzionale di altri 30 dB che sottratti ai -60 in
-% spazio libero ci permette di ottenere proprio i valori in output
-
-% Un'ultima osservazione. Sempre in letteratura si riconoscono dei limiti
+% In letteratura si riconoscono dei limiti
 % fisici operativi nei sistemi di comunicazione radio e cellulari, la cui
 % potenza si aggira intorno ai -104/-120 dBm. Affinché un ricevitore mantenga attivo
 % il collegamento radio, deve avere una soglia minima tra i -90 ed i -100,
